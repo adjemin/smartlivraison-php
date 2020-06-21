@@ -21,6 +21,8 @@ composer require adjemin/smartlivraison-php
 
 Simple usage looks like:
 
+##Create Merchant Task and Assign to Delivery service
+
 ```php
 
 
@@ -94,12 +96,16 @@ $delivery = SmartLivraison::paramJob(
     $description
 );
 
- $client_id = ''; //Your CLIENT ID
- $client_secret = ''; //Your CLIENT SECRET
+ $client_id = '11211111'; //Your CLIENT ID
+ $client_secret = '10997210-b096-4dd7-b834-837856e4fe25'; //Your CLIENT SECRET
  $smartLivraison = new SmartLivraison($client_id, $client_secret);
 
- $merchant_id = "1"; //Your merchant ID
+ $merchant_id = "21121"; //Your merchant ID
  $merchant_notification_url = "http://example.com/sl_notify"; //Your merchant notification url
+
+ $delivery_service_username = "adjemin"; // The username of the delivery service in Smart Livraison
+ $customer_payment_method_code = "cash"; //cash or online
+ $customer_paid = false; // if true so the customer will not paid at the delivery
 
 /** var array $result */
 $result = $smartLivraison->merchantCreateTask(
