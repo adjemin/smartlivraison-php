@@ -81,10 +81,6 @@ class SmartLivraison extends BaseApi{
     public function findTaskById($task_id)
     {
         
-        if(!is_string($task_id) || !is_int($task_id)){
-            throw new Exception('task_id is invalid'); 
-        }
-
         if(empty($task_id)){
             throw new Exception('task_id is required'); 
         }
@@ -123,10 +119,6 @@ class SmartLivraison extends BaseApi{
      */
     public function findJobById($job_id)
     {
-        
-        if(!is_string($job_id) || !is_int($job_id)){
-            throw new Exception('job_id is invalid'); 
-        }
 
         if(empty($job_id)){
             throw new Exception('job_id is required'); 
@@ -166,10 +158,6 @@ class SmartLivraison extends BaseApi{
      */
     public function findMerchantAssignmentById($merchant_assignment_id)
     {
-        
-        if(!is_string($merchant_assignment_id) || !is_int($merchant_assignment_id)){
-            throw new Exception('merchant_assignment_id is invalid'); 
-        }
 
         if(empty($merchant_assignment_id)){
             throw new Exception('merchant_assignment_id is required'); 
@@ -216,9 +204,6 @@ class SmartLivraison extends BaseApi{
     public function merchantCreateTask($merchant_id, array $pickup, array $delivery, string $delivery_service,string $customer_payment_method_code, bool $customer_paid, string $merchant_notification_url )
     {
         
-        if(!is_string($merchant_id) || !is_int($merchant_id)){
-            throw new Exception('merchant_id must be string'); 
-        }
 
         if(!is_array($pickup)){
             throw new Exception('pickup must be array'); 
@@ -236,11 +221,8 @@ class SmartLivraison extends BaseApi{
             throw new Exception('merchant_notification_url must be string'); 
         }
 
-        if(!is_bool($customer_paid) || !is_int($customer_paid) || !is_string($customer_paid) ){
-            throw new Exception('customer_paid must be boolean or integer or string'); 
-        }
 
-        if(!is_bool($customer_payment_method_code)){
+        if(!is_string($customer_payment_method_code)){
             throw new Exception('customer_payment_method_code must be string'); 
         }
 
@@ -361,8 +343,8 @@ class SmartLivraison extends BaseApi{
         $images = [],
         $description = "" ){
         
-        if(!is_string(merchant_id) || !is_int(merchant_id)){
-            throw new Exception('merchant_id must be string'); 
+        if(empty(merchant_id)){
+            throw new Exception('merchant_id is required'); 
         }
 
         
@@ -416,11 +398,6 @@ class SmartLivraison extends BaseApi{
         $job_datetime = "",
         $images = [],
         $description = "" ){
-        
-        if(!is_string($merchant_id) || !is_int($merchant_id)){
-            throw new Exception('merchant_id must be string'); 
-        }
-
         
         // Scafolding the request's params
          $b = [
@@ -480,14 +457,6 @@ class SmartLivraison extends BaseApi{
      */
     public function merchantAssignTask( $merchant_id, $task_id, string $delivery_service, string $merchant_notification_url)
     {
-        
-        if(!is_string($merchant_id) || !is_int($merchant_id)){
-            throw new Exception('merchant_id must be string'); 
-        }
-
-        if(!is_string($task_id) || !is_int($task_id)){
-            throw new Exception('task_id must be string'); 
-        }
 
         if(!is_string($delivery_service)){
             throw new Exception('delivery service must be string'); 
