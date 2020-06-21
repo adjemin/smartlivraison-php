@@ -19,6 +19,7 @@
 
 namespace SmartLivraison;
 use SmartLivraison\BaseApi;
+use Exception;
 
 class SmartLivraison extends BaseApi{
 
