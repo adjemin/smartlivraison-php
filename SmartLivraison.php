@@ -2,7 +2,6 @@
 
 namespace App\Utils\SmartLivraison;
 use App\Utils\SmsCompaigns\BaseApi;
-use Symfony\Component\HttpFoundation\ParameterBag;
 
 class SmartLivraison extends BaseApi{
 
@@ -59,7 +58,7 @@ class SmartLivraison extends BaseApi{
     /**
      * Find Task by Id
      * @param $task_id
-     * @return ParameterBag
+     * @return array
      */
     public function findTaskById($task_id)
     {
@@ -74,13 +73,13 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ]
             ];
             // Sending POST Request
@@ -88,10 +87,8 @@ class SmartLivraison extends BaseApi{
 
             $result = (array)json_decode($result, true);
 
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
+            return $result; 
+            
 
 
         }else{
@@ -104,7 +101,7 @@ class SmartLivraison extends BaseApi{
     /**
      * Find Job by Id
      * @param $job_id
-     * @return ParameterBag
+     * @return array
      */
     public function findJobById($job_id)
     {
@@ -119,13 +116,13 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ]
             ];
             // Sending POST Request
@@ -133,11 +130,8 @@ class SmartLivraison extends BaseApi{
 
             $result = (array)json_decode($result, true);
 
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
+            return $result; 
+            
 
         }else{
             return $jsonToken;
@@ -150,7 +144,7 @@ class SmartLivraison extends BaseApi{
     /**
      * Find Merchant Assignment by Id
      * @param $task_id
-     * @return ParameterBag
+     * @return array
      */
     public function findMerchantAssignmentById($merchant_assignment_id)
     {
@@ -165,13 +159,13 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ]
             ];
             // Sending POST Request
@@ -179,11 +173,9 @@ class SmartLivraison extends BaseApi{
 
             $result = (array)json_decode($result, true);
 
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
+           
+            return $result; 
+            
 
         }else{
             return $jsonToken;
@@ -201,7 +193,7 @@ class SmartLivraison extends BaseApi{
      * @param string $customer_payment_method_code must be cash or online
      * @param bool $customer_paid
      * @param string $merchant_notification_url
-     * @return ParameterBag
+     * @return array
      */
     public function merchantCreateTask($merchant_id, array $pickup, array $delivery, string $delivery_service,string $customer_payment_method_code, bool $customer_paid, string $merchant_notification_url )
     {
@@ -282,14 +274,14 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Content-Type: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ],
                 'params' => $b
             ];
@@ -298,11 +290,8 @@ class SmartLivraison extends BaseApi{
 
             $result = (array)json_decode($result, true);
 
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
+            return $result; 
+            
 
         }else{
             return $jsonToken;
@@ -333,7 +322,7 @@ class SmartLivraison extends BaseApi{
      * @param array  $images
      * @param string $description
      * 
-     * @return ParameterBag
+     * @return array
      */
     public function merchantCreateJob(
         $merchant_id, 
@@ -388,7 +377,7 @@ class SmartLivraison extends BaseApi{
      * @param array  $images
      * @param string $description
      * 
-     * @return ParameterBag
+     * @return array
      */
     private function createJob(
         $created_by, 
@@ -438,13 +427,13 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ],
                 'params' => $b
             ];
@@ -452,12 +441,9 @@ class SmartLivraison extends BaseApi{
             $result =  $this->post('v1/merchant_create_tasks', $options);
 
             $result = (array)json_decode($result, true);
-
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
+          
+            return $result; 
+            
 
         }else{
             return $jsonToken;
@@ -472,7 +458,7 @@ class SmartLivraison extends BaseApi{
      * @param string $task_id
      * @param string $delivery_service is the username of a delivery service
      * @param string $merchant_notification_url is a url that must provide for webhook
-     * @return ParameterBag
+     * @return array
      */
     public function merchantAssignTask( $merchant_id, $task_id, string $delivery_service, string $merchant_notification_url)
     {
@@ -519,14 +505,14 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Cache-Control: no-cache',
                     'Content-Type: application/x-www-form-urlencoded',
-                    'Authorization: Bearer '.$jsonToken->get('access_token'),
+                    'Authorization: Bearer '.$jsonToken['access_token']
                     
                 ],
                 'params' => $b
@@ -538,13 +524,8 @@ class SmartLivraison extends BaseApi{
 
            
             $result = (array)json_decode($result, true);
-
-            return $result;
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
+         
+            return $result;     
 
         }else{
             return $jsonToken;
@@ -562,7 +543,7 @@ class SmartLivraison extends BaseApi{
      * @param string $product_description
      * @param string $product_link
      * @param array $delivery_services
-     * @return ParameterBag
+     * @return array
      */
     public function merchantNotifyDeliveryService( $product_id, $product_title, $product_image, $product_description, $product_link, $delivery_services)
     {
@@ -619,14 +600,14 @@ class SmartLivraison extends BaseApi{
 
         $jsonToken = $this->obtainToken();
 
-        if(!empty($jsonToken) && $jsonToken->get('access_token') != null){
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
                     // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
                     'Content-Type: application/json',
                     'Cache-Control: no-cache',
-                    'Authorization: Bearer '.$jsonToken->get('access_token')
+                    'Authorization: Bearer '.$jsonToken['access_token']
                 ],
                 'params' => $b
             ];
@@ -635,12 +616,8 @@ class SmartLivraison extends BaseApi{
 
             $result = (array)json_decode($result, true);
 
-            //Transfor array to @ParameterBag
-            $resultJson = new ParameterBag($result);
-
-            return $resultJson;
-
-
+            return $result; 
+            
         }else{
             return $jsonToken;
         }
@@ -672,19 +649,9 @@ class SmartLivraison extends BaseApi{
 
         $result = (array)json_decode($result, true);
 
-        //Transfor array to @ParameterBag
-        /**
-         * 
-         * {
-    "token_type": "Bearer",
-    "expires_in": 300,
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZGJlZDUwYTU0ODg4Mzk1YzMyZmM4MGUwYjhkMWRiNzc1M2ZmNzViNmJjNGE1MzJkNzRmYzFmOWZhMTg2YzRhYzQyNTAwMDQ0ZDMwMDMzMDUiLCJpYXQiOjE1OTIyNDUwNzUsIm5iZiI6MTU5MjI0NTA3NSwiZXhwIjoxNTkyMjQ1Mzc1LCJzdWIiOiIiLCJzY29wZXMiOlsiKiJdfQ.oMeZzWxt4yrM38nafTFDcPKdOg3fznRLyU-uhniM1_V4i8dz73Zafmb3ME9MysXYxl5MJzxhagfrGNPxthLLdM7RBKwgttVNYs9AD9BOWuZcIgTIMstcg2OtITLN52APnRVyC4RKCQh70eKLIyMLk9kgCcr-3uygUEudFsUv1lbRhB42Yp4fNyOoxeTm9MIFt_kaCftTYgHny0LyXIB4wv7jUBDsnoUpkBnmK32YYb-3ymjpniyKySVfk5i4RIhubHrmyuieR48hfquBYHS0mUBBibmMrk1oW9knd4h8YR8x9Ta-EM9-4wiiDe2kI1BoqfA9FzZyR0pg6AgrVttT0oVyM6JK_GLAqYL_6bHSQfIZVuo8job6a74IUOLbj6JlAaTMKZSifEq8RUEJJfJQlppPoZ4LML-Fgw0y_aVjsasN4m531CZ4xl5v6pq_snET_w9VX7l861HIi-K-FnlwXYAPr0pawO7LsqN8IbG2VcVLKyb-o_rUqhikEZda0F-L1pJUmfugHkFf3qEyyjqO68CaHF8b2clv2PBhfHs-RjOLqMF6K6lGGtZd6H9x8--Jsbg5qHTlOYHgcXN71t_67CRk388C-Yfnj03Tog76qXxMRfzTBmHgRugNXvcviFlRW40Ej6du-Hpm7lOBr7LNl1xDrp3GyW2PzSQcmKgT_Fs"
-}
-         * 
-         */
-        $resultJson = new ParameterBag($result);
+        return $result; 
+            
 
-        return $resultJson;
     }
 
     /**
