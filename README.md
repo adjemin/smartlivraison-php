@@ -1,5 +1,7 @@
 # Smart Livraison PHP
 
+[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](//packagist.org/packages/phpunit/phpunit) [![Total Downloads](https://poser.pugx.org/phpunit/phpunit/downloads)](//packagist.org/packages/phpunit/phpunit) [![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit) [![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
+
 The Smart Livraison PHP library provides convenient access to the Smart Livraison API from
 applications written in the PHP language. It includes a pre-defined set of
 classes for API resources that initialize themselves dynamically from API
