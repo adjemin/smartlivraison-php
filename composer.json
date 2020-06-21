@@ -1,7 +1,6 @@
 {
     "name": "adjemin/smartlivraison-php",
     "description": "PHP library for the Smart Livraison API. https://smartlivraison.com",
-    "type": "library",
     "homepage": "https://github.com/adjemin/smartlivraison-php",
     "license": "MIT",
     "version": "1.0.0",
