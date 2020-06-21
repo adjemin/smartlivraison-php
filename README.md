@@ -21,7 +21,7 @@ composer require adjemin/smartlivraison-php
 
 Simple usage looks like:
 
-##Create Merchant Task and Assign to Delivery service
+### Create Merchant Task and Assign to Delivery service
 
 ```php
 
