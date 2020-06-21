@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Utils\SmartLivraison;
+namespace SmartLivraison;
 
 
 class TaskStatus

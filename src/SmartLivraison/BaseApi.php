@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Utils\SmartLivraison;
+namespace SmartLivraison;
 
 /**
- * This class is for for performing Api call.
+ * This class is for performing Api call.
  * Actually, only POST and GET methods are embedded for an Http request.
  * 
  * @license MIT

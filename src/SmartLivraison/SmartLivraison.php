@@ -1,7 +1,24 @@
 <?php
+/**
+ * Smart Livraison
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT License that is bundled
+ * with this package in the file LICENSE.
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to dev@adjemin.com so we can send you a copy immediately.
+ *
+ * @category   SmartLivraison
+ * @package    SmartLivraison
+ * @version    1.0.0
+ * @license    MIT
+ * @copyright  Copyright (c) 2020 Adjemin Inc. (https://adjemin.com)
+ */
 
-namespace App\Utils\SmartLivraison;
-use App\Utils\SmsCompaigns\BaseApi;
+namespace SmartLivraison;
+use SmartLivraison\BaseApi;
 
 class SmartLivraison extends BaseApi{
 
