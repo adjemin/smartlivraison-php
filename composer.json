@@ -24,8 +24,8 @@
     },
     "require-dev": {},
     "autoload": {
-        "psr-0": {
-          "SmartLivraison": "src/"
+        "psr-4": {
+          "SmartLivraison\\": "src/SmartLivraison/"
         }
       }
 }

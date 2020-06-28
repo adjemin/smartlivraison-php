@@ -19,7 +19,7 @@
 
 namespace SmartLivraison;
 use SmartLivraison\BaseApi;
-use Exception;
+use SmartLivraison\Exception\SmartLivraisonException;
 
 class SmartLivraison extends BaseApi{
 
@@ -82,7 +82,7 @@ class SmartLivraison extends BaseApi{
     {
         
         if(empty($task_id)){
-            throw new Exception('task_id is required'); 
+            throw new SmartLivraisonException('task_id is required'); 
         }
 
         $jsonToken = $this->obtainToken();
@@ -121,7 +121,7 @@ class SmartLivraison extends BaseApi{
     {
 
         if(empty($job_id)){
-            throw new Exception('job_id is required'); 
+            throw new SmartLivraisonException('job_id is required'); 
         }
 
         $jsonToken = $this->obtainToken();
@@ -160,7 +160,7 @@ class SmartLivraison extends BaseApi{
     {
 
         if(empty($merchant_assignment_id)){
-            throw new Exception('merchant_assignment_id is required'); 
+            throw new SmartLivraisonException('merchant_assignment_id is required'); 
         }
 
         $jsonToken = $this->obtainToken();
@@ -206,57 +206,57 @@ class SmartLivraison extends BaseApi{
         
 
         if(!is_array($pickup)){
-            throw new Exception('pickup must be array'); 
+            throw new SmartLivraisonException('pickup must be array'); 
         }
 
         if(!is_array($delivery)){
-            throw new Exception('delivery must be array'); 
+            throw new SmartLivraisonException('delivery must be array'); 
         }
 
         if(!is_string($delivery_service)){
-            throw new Exception('delivery service must be string'); 
+            throw new SmartLivraisonException('delivery service must be string'); 
         }
 
         if(!is_string($merchant_notification_url)){
-            throw new Exception('merchant_notification_url must be string'); 
+            throw new SmartLivraisonException('merchant_notification_url must be string'); 
         }
 
 
         if(!is_string($customer_payment_method_code)){
-            throw new Exception('customer_payment_method_code must be string'); 
+            throw new SmartLivraisonException('customer_payment_method_code must be string'); 
         }
 
         if(!in_array($customer_payment_method_code, ['cash', 'online'])){
-            throw new Exception('customer_payment_method_code must be cash or online'); 
+            throw new SmartLivraisonException('customer_payment_method_code must be cash or online'); 
         }
 
         if(empty($merchant_id)){
-            throw new Exception('merchant_id is required'); 
+            throw new SmartLivraisonException('merchant_id is required'); 
         }
 
         if(empty($pickup)){
-            throw new Exception('pickup is required'); 
+            throw new SmartLivraisonException('pickup is required'); 
         }
 
         if(empty($delivery)){
-            throw new Exception('delivery is required'); 
+            throw new SmartLivraisonException('delivery is required'); 
         }
 
 
         if(empty($delivery_service)){
-            throw new Exception('delivery_service is required'); 
+            throw new SmartLivraisonException('delivery_service is required'); 
         }
 
         if(empty($merchant_notification_url)){
-            throw new Exception('merchant_notification_url is required'); 
+            throw new SmartLivraisonException('merchant_notification_url is required'); 
         }
 
         if(empty($customer_paid)){
-            throw new Exception('customer_paid is required'); 
+            throw new SmartLivraisonException('customer_paid is required'); 
         }
 
         if(empty($customer_payment_method_code)){
-            throw new Exception('customer_payment_method_code is required'); 
+            throw new SmartLivraisonException('customer_payment_method_code is required'); 
         }
         
         // Scafolding the request's params
@@ -286,7 +286,7 @@ class SmartLivraison extends BaseApi{
                 'params' => $b
             ];
             // Sending POST Request
-            $result =  $this->post('v1/merchant_create_tasks', $options);
+            $result =  $this->post('v1/merchant_create_tasks', $options, "application/json");
 
             $result = (array)json_decode($result, true);
 
@@ -344,7 +344,7 @@ class SmartLivraison extends BaseApi{
         $description = "" ){
         
         if(empty(merchant_id)){
-            throw new Exception('merchant_id is required'); 
+            throw new SmartLivraisonException('merchant_id is required'); 
         }
 
         
@@ -433,7 +433,7 @@ class SmartLivraison extends BaseApi{
                 'params' => $b
             ];
             // Sending POST Request
-            $result =  $this->post('v1/merchant_create_tasks', $options);
+            $result =  $this->post('v1/merchant_create_tasks', $options, "application/json");
 
             $result = (array)json_decode($result, true);
           
@@ -459,41 +459,45 @@ class SmartLivraison extends BaseApi{
     {
 
         if(!is_string($delivery_service)){
-            throw new Exception('delivery service must be string'); 
+            throw new SmartLivraisonException('delivery service must be string'); 
         }
 
         if(!is_string($merchant_notification_url)){
-            throw new Exception('merchant_notification_url must be string'); 
+            throw new SmartLivraisonException('merchant_notification_url must be string'); 
         }
 
         if(empty($merchant_id)){
-            throw new Exception('merchant_id is required'); 
+            throw new SmartLivraisonException('merchant_id is required'); 
         }
 
         if(empty($task_id)){
-            throw new Exception('task_id is required'); 
+            throw new SmartLivraisonException('task_id is required'); 
         }
 
         if(empty($delivery_service)){
-            throw new Exception('delivery_service is required'); 
+            throw new SmartLivraisonException('delivery_service is required'); 
         }
 
         if(empty($merchant_notification_url)){
-            throw new Exception('merchant_notification_url is required'); 
+            throw new SmartLivraisonException('merchant_notification_url is required'); 
         }
         
-        // Scafolding the request's params
-         $b = [
-            "task_id" => $task_id."",
-            "merchant_id" => $merchant_id."",
-            "delivery_service" => $delivery_service."",
-            "merchant_notification_url" => $merchant_notification_url.""
-        ];
 
         $jsonToken = $this->obtainToken();
 
+
         if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
-                    // Scafolding request's options
+            // Scafolding the request's params
+            $b = [
+                "task_id" => $task_id."",
+                "merchant_id" => $merchant_id."",
+                "delivery_service" => $delivery_service."",
+                "merchant_notification_url" => $merchant_notification_url.""
+            ];
+
+           
+
+            // Scafolding request's options
             $options = [
                 'headers'=> [
                     'Accept: application/json',
@@ -507,8 +511,7 @@ class SmartLivraison extends BaseApi{
 
            
             // Sending POST Request
-            $result =  $this->post('v1/merchant_assign_tasks', $options);
-
+            $result =  $this->post('v1/merchant_assign_tasks', $options, "application/x-www-form-urlencoded");
            
             $result = (array)json_decode($result, true);
          
@@ -536,43 +539,43 @@ class SmartLivraison extends BaseApi{
     {
         
         if(!is_string($product_id)){
-            throw new Exception('product_id must be string'); 
+            throw new SmartLivraisonException('product_id must be string'); 
         }
 
         if(!is_string($product_title)){
-            throw new Exception('product_title must be string'); 
+            throw new SmartLivraisonException('product_title must be string'); 
         }
 
         if(!is_string($product_image)){
-            throw new Exception('product_image must be string'); 
+            throw new SmartLivraisonException('product_image must be string'); 
         }
 
         if(!is_string($product_link)){
-            throw new Exception('product_link must be string'); 
+            throw new SmartLivraisonException('product_link must be string'); 
         }
 
         if(!is_array($delivery_services)){
-            throw new Exception('delivery_services must be array'); 
+            throw new SmartLivraisonException('delivery_services must be array'); 
         }
 
         if(empty($product_id)){
-            throw new Exception('product_id is required'); 
+            throw new SmartLivraisonException('product_id is required'); 
         }
 
         if(empty($product_title)){
-            throw new Exception('product_title is required'); 
+            throw new SmartLivraisonException('product_title is required'); 
         }
 
         if(empty($product_image)){
-            throw new Exception('product_image is required'); 
+            throw new SmartLivraisonException('product_image is required'); 
         }
 
         if(empty($product_link)){
-            throw new Exception('product_link is required'); 
+            throw new SmartLivraisonException('product_link is required'); 
         }
 
         if(empty($delivery_services)){
-            throw new Exception('delivery_services is empty'); 
+            throw new SmartLivraisonException('delivery_services is empty'); 
         }
         
         // Scafolding the request's params
@@ -599,7 +602,7 @@ class SmartLivraison extends BaseApi{
                 'params' => $b
             ];
             // Sending POST Request
-            $result =  $this->post('v1/businesses_notify_tag', $options);
+            $result =  $this->post('v1/businesses_notify_tag', $options, "application/json");
 
             $result = (array)json_decode($result, true);
 
@@ -632,7 +635,7 @@ class SmartLivraison extends BaseApi{
             'params' => $b
         ];
         // Sending POST Request
-        $result =  $this->post('oauth/token', $options);
+        $result =  $this->post('oauth/token', $options, "application/json");
 
         $result = (array)json_decode($result, true);
 
