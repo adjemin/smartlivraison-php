@@ -3,7 +3,7 @@
     "description": "Smart Livraison PHP Library",
     "homepage": "https://github.com/adjemin/smartlivraison-php",
     "license": "MIT",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "keywords": [
         "smart livraison",
         "integration",
