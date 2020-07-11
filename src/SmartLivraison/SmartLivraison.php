@@ -251,9 +251,6 @@ class SmartLivraison extends BaseApi{
             throw new SmartLivraisonException('merchant_notification_url is required'); 
         }
 
-        if(empty($customer_paid)){
-            throw new SmartLivraisonException('customer_paid is required'); 
-        }
 
         if(empty($customer_payment_method_code)){
             throw new SmartLivraisonException('customer_payment_method_code is required'); 
