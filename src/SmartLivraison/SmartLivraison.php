@@ -113,6 +113,45 @@ class SmartLivraison extends BaseApi{
     }
 
     /**
+     * Find Task by Id
+     * @param $task_id
+     * @return array
+     */
+    public function cancelTask($task_id)
+    {
+        
+        if(empty($task_id)){
+            throw new SmartLivraisonException('task_id is required'); 
+        }
+
+        $jsonToken = $this->obtainToken();
+
+        if(!empty($jsonToken) && array_key_exists("access_token", $jsonToken) && $jsonToken['access_token'] != null){
+                    // Scafolding request's options
+            $options = [
+                'headers'=> [
+                    'Accept: application/json',
+                    'Cache-Control: no-cache',
+                    'Authorization: Bearer '.$jsonToken['access_token']
+                ]
+            ];
+            // Sending POST Request
+            $result =  $this->get('v1/tasks/merchant_cancel/'.$task_id, $options);
+
+            $result = (array)json_decode($result, true);
+
+            return $result; 
+            
+
+
+        }else{
+            return $jsonToken;
+        }
+
+
+    }
+
+    /**
      * Find Job by Id
      * @param $job_id
      * @return array
