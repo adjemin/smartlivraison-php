@@ -69,7 +69,7 @@ class BaseApi
             $url = $this->base_url."/".$endpoint;
             
             // Initialize curl session
-            $curl = curl_init($url);
+            $curl = curl_init("$url");
 
             // Disable SSL verification
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -139,7 +139,7 @@ class BaseApi
             case "GET":
                 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
                 if (array_key_exists("params", $options)) {
-                    $getUrl = $url."?".http_build_query($options["params"]);
+                    $getUrl = $curl."?".http_build_query($options["params"]);
                     curl_setopt($curl, CURLOPT_URL, $getUrl);
                 } else {
                     curl_setopt($curl, CURLOPT_URL, $url);
