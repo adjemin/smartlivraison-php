@@ -40,7 +40,7 @@ class BaseApi
      */
     public function get($endpoint, array $options = null)
     {
-        return $this->call("GET", $endpoint, $options);
+        return $this->call("GET", $endpoint, $options, null);
     }
 
     /**
