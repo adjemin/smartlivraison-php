@@ -115,7 +115,7 @@ class BaseApi
      * @param array $options
      * @param string $contentType
      */
-    public function buildRequestScafolding($curl, $http_method, array $options, $contentType)
+    public function buildRequestScafolding($curl, $url, $http_method, array $options, $contentType)
     {
         if (array_key_exists("headers", $options)) {
             curl_setopt($curl, CURLOPT_HTTPHEADER, $options["headers"]);
@@ -137,13 +137,18 @@ class BaseApi
                 break;
 
             case "GET":
-                curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+                curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                
+             
                 if (array_key_exists("params", $options)) {
-                    $getUrl = $curl."?".http_build_query($options["params"]);
+                    $data = http_build_query($options["params"]);
+                    $getUrl = $url."?".$data;
                     curl_setopt($curl, CURLOPT_URL, $getUrl);
-                } else {
-                    curl_setopt($curl, CURLOPT_URL, $curl);
-                }
+                }else {
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                } 
+
+
                 break;
         }
 
