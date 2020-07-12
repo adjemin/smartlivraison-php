@@ -82,7 +82,7 @@ class BaseApi
 
             // Check if request as options
             if (!is_null($options) && is_array($options)) {
-                $curl = $this->buildRequestScafolding($curl, $http_method, $options, $contentType);
+                $curl = $this->buildRequestScafolding($curl,$url, $http_method, $options, $contentType);
             }
 
             // Performing request
@@ -111,6 +111,7 @@ class BaseApi
      * Build the curl request scafolding
      *
      * @param resource $curl
+     * @param string $url
      * @param string $http_method
      * @param array $options
      * @param string $contentType
