@@ -142,7 +142,7 @@ class BaseApi
                     $getUrl = $curl."?".http_build_query($options["params"]);
                     curl_setopt($curl, CURLOPT_URL, $getUrl);
                 } else {
-                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl, CURLOPT_URL, $curl);
                 }
                 break;
         }
