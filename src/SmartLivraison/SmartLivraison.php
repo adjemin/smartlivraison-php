@@ -113,7 +113,7 @@ class SmartLivraison extends BaseApi{
     }
 
     /**
-     * Find Task by Id
+     * Cancel Task
      * @param $task_id
      * @return array
      */
