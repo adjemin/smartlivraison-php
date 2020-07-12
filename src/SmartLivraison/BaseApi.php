@@ -38,7 +38,7 @@ class BaseApi
      * @param array $options
      * @return string
      */
-    public function get($endpoint, array $options = null)
+    public function get($endpoint, array $options = [])
     {
         return $this->call("GET", $endpoint, $options, null);
     }
@@ -69,7 +69,7 @@ class BaseApi
             $url = $this->base_url."/".$endpoint;
             
             // Initialize curl session
-            $curl = curl_init("$url");
+            $curl = curl_init($url);
 
             // Disable SSL verification
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
