@@ -238,9 +238,10 @@ class SmartLivraison extends BaseApi{
      * @param string $customer_payment_method_code must be cash or online
      * @param bool $customer_paid
      * @param string $merchant_notification_url
+     * @param bool $has_auto_assign
      * @return array
      */
-    public function merchantCreateTask($merchant_id, array $pickup, array $delivery, string $delivery_service,string $customer_payment_method_code, bool $customer_paid, string $merchant_notification_url )
+    public function merchantCreateTask($merchant_id, array $pickup, array $delivery, string $delivery_service,string $customer_payment_method_code, bool $customer_paid, string $merchant_notification_url, bool $has_auto_assign )
     {
         
 
@@ -305,7 +306,8 @@ class SmartLivraison extends BaseApi{
             "merchant_id" => $merchant_id."",
             "customer_payment_method_code" => $customer_payment_method_code."",
             "customer_paid" => boolval($customer_paid),
-            "merchant_notification_url" => $merchant_notification_url
+            "merchant_notification_url" => $merchant_notification_url,
+            "has_auto_assign" => $has_auto_assign
         ];
 
         $jsonToken = $this->obtainToken();
